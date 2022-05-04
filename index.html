@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Bookmarklets</title>
+  <meta charset="UTF-8">
+  <style>
+      body {
+          font-family: Helvetica, sans-serif;
+          background-color: steelblue;
+
+      }
+
+      article {
+          max-width: 900px;
+          margin: 20px auto;
+          background: white;
+          padding: 20px;
+          box-shadow: mediumaquamarine -10px -10px;
+      }
+
+      details {
+          border: 1px solid transparent;
+          border-radius: 3px;
+      }
+      details[open] {
+          border: 1px solid #333;
+      }
+      details[open] summary {
+          border-bottom: 1px solid #ccc;
+      }
+      details summary {
+          cursor: pointer;
+          padding: 5px;
+      }
+      details pre {
+          background-color: lightgray;
+          overflow: scroll;
+          white-space: break-spaces;
+          padding: 12px;
+      }
+
+      p {
+          margin-bottom: 20px;
+      }
+
+      a {
+          white-space: nowrap;
+          cursor: grab;
+          display: inline-block;
+          padding: 8px 12px;
+          border: 2px solid #666;
+          border-radius: 5px;
+          text-decoration: none;
+      }
+      table {
+          border-collapse: collapse;
+      }
+      table tr td {
+          padding: 10px 20px;
+      }
+      table tr td:first-child {
+          vertical-align: top;
+      }
+      tr:not(:last-of-type) td {
+          border-bottom: 1px solid #333;
+      }
+  </style>
+  <script type="application/ecmascript">
+      window.addEventListener('DOMContentLoaded', function() {
+          document.querySelectorAll('details').forEach(element => {
+              element.querySelector('pre').innerText = element.parentElement.parentElement.querySelector('a').attributes.href.nodeValue
+          })
+      })
+  </script>
+</head>
+<body>
+<article>
+  <h1>Bookmarklets</h1>
+
+  <h2>Drag a button into your bookmarks bar to use it.</h2>
+  <table>
+    <tr>
+      <td>
+        <a href="javascript:(function() {
+  const i = location.href.lastIndexOf('/');
+  const x = parseInt(location.href.substring(i+1), 10);
+  if (isNaN(x)) {
+    alert('URL not supported')
+  } else {
+    location.href = location.href.substring(0, i + 1) + (x - 1).toString()
+  }
+})()">&#11013;&#65039;</a>
+      </td>
+      <td>
+        "Previous": for any URL ending with a number, goes to the URL with the number-1.
+        <details>
+          <summary>show code</summary>
+          <pre></pre>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a href="javascript:(function() {
+  const i = location.href.lastIndexOf('/');
+  const x = parseInt(location.href.substring(i+1), 10);
+  if (isNaN(x)) {
+    alert('URL not supported')
+  } else {
+    location.href = location.href.substring(0, i + 1) + (x + 1).toString()
+  }
+})()"
+        >&#10145;&#65039;</a>
+      </td>
+      <td>
+        "Next": for any URL ending with a number, goes to the URL with the number+1.
+        <details>
+          <summary>show code</summary>
+          <pre></pre>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+            href="javascript:(function() {
+  const r = /bitbucket.org\/([\w-]+)\/([\w-]+)\/?/;
+  const r2 = /github.com\/([\w-]+)\/([\w-]+)\/?/;
+  if (r.test(location.href)) {
+    location.href = location.href
+      .replace(r, 'github.com/$1/$2/')
+      .replace('/pull-requests/', '/pull/')
+      .replace('/src/master/', '/')
+  } else if (r2.test(location.href)) {
+    location.href = (
+      location.href
+        .replace(r2, 'bitbucket.org/$1/$2/')
+        .replace('/pull/', '/pull-requests/')
+    )
+  }
+  })()"
+        >&#x1F419; &#x2194;&#xFE0F; &#x1FAA3;</a>
+      </td>
+      <td>
+        "GitHub - Bitbucket switcher": Go from a Bitbucket location to the corresponding one in Github and vice-versa.
+        Go from a Bitbucket location to the corresponding one in Github and vice-versa.
+        <details>
+          <summary>show code</summary>
+          <pre></pre>
+        </details>
+      </td>
+    </tr>
+  </table>
+</article>
+</body>
+</html>
