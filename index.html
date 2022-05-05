@@ -82,12 +82,12 @@
     <tr>
       <td>
         <a href="javascript:(function() {
-  const i = location.href.lastIndexOf('/');
-  const x = parseInt(location.href.substring(i+1), 10);
-  if (isNaN(x)) {
+  const r = /(.*?)(\d+)([/?#].*)?$/;
+  if (!r.test(location.href)) {
     alert('URL not supported')
   } else {
-    location.href = location.href.substring(0, i + 1) + (x - 1).toString()
+    const [_, pre, number, post] = r.exec(location.href);
+    location.href = `${pre}${parseInt(number, 10) - 1}${post ?? ''}`
   }
 })()">&#11013;&#65039;</a>
       </td>
@@ -102,12 +102,12 @@
     <tr>
       <td>
         <a href="javascript:(function() {
-  const i = location.href.lastIndexOf('/');
-  const x = parseInt(location.href.substring(i+1), 10);
-  if (isNaN(x)) {
+  const r = /(.*?)(\d+)([/?#].*)?$/;
+  if (!r.test(location.href)) {
     alert('URL not supported')
   } else {
-    location.href = location.href.substring(0, i + 1) + (x + 1).toString()
+    const [_, pre, number, post] = r.exec(location.href);
+    location.href = `${pre}${parseInt(number, 10) + 1}${post ?? ''}`
   }
 })()"
         >&#10145;&#65039;</a>
