@@ -3,4 +3,4 @@ Handy bookmarklets letting you bookmarklet all the things! (well, maybe not _all
 
 ## View
 
-Check it out at to https://htmlpreview.github.io/?https://github.com/wadevries/bookmarklets/blob/main/index.html
+Check it out at to https://wadevries.github.io/bookmarklets/
