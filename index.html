@@ -162,10 +162,10 @@
     const issue = `${keyElement.textContent} ${titleElement.textContent}`;
     navigator.clipboard.writeText(issue);
     if (Notification.permission === 'granted') {
-      new Notification('Copied!', {body: issue});
+      new Notification('Copied', {body: issue});
     }
     else {
-      window.alert(`Copied! ${issue}`);
+      window.alert(`Copied ${issue}`);
     }
   }
   })()"
