@@ -150,6 +150,36 @@
         </details>
       </td>
     </tr>
+    <tr>
+      <td>
+        <a
+            href="javascript:(function() {
+  const keyElement = document.querySelector(`[data-test-id='issue.views.issue-base.foundation.breadcrumbs.breadcrumb-current-issue-container'] [role=presentation] a span`);
+  const titleElement = document.querySelector(`[data-test-id='issue.views.issue-base.foundation.summary.heading']`);
+
+  if (keyElement && titleElement) {
+    const issue = `${keyElement.textContent} ${titleElement.textContent}`;
+    navigator.clipboard.writeText(issue);
+    if (Notification.permission === 'granted') {
+      new Notification('Copied!', {body: issue});
+    }
+    else {
+      window.alert(`Copied! ${issue}`);
+    }
+  }
+  })()"
+        >Copy Issue</a>
+      </td>
+      <td>
+        "JIRA Issue Key + title copyer": Copies "ISSUEKEY Title" from a JIRA issue view. On success, a modal alert will
+        show to inform you that the copy was successful. If notifications are allowed for the current domain,
+        a notification will be shown instead.
+        <details>
+          <summary>show code</summary>
+          <pre></pre>
+        </details>
+      </td>
+    </tr>
   </table>
 </article>
 </body>
