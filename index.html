@@ -164,6 +164,16 @@
     if (Notification.permission === 'granted') {
       new Notification('Copied', {body: issue});
     }
+    else if (Notification.permission !== 'denied') {
+      Notification.requestPermission().then(function (permission) {
+        if (permission === 'granted') {
+          new Notification('Copied', {body: issue});
+        }
+        else {
+          window.alert(`Copied ${issue}`);
+        }
+      })
+    }
     else {
       window.alert(`Copied ${issue}`);
     }
