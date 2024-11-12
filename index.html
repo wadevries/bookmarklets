@@ -84,6 +84,28 @@
     <tr>
       <td>
         <a href="javascript:(function() {
+  const repo = prompt('Navigate to GitHub repo');
+  if (repo) {
+    const slug = repo.indexOf('/') === -1 ? `leukeleu/${repo}` : repo;
+    window.location.href = `https://github.com/${slug}`
+  }
+})()"
+        >🥞 goto repo</a>
+      </td>
+      <td>
+        "Navigate to GitHub repo": Asks for a repo name and navigates to the GitHub repo page. You can enter a full
+        repo name (e.g. "leukeleu/bookmarklets") or just the repo name (e.g. "bookmarklets"). To navigate to an
+        organisation, enter `organisation/`, e.g. "leukeleu/".
+        <details>
+          <summary>show code</summary>
+          <pre></pre>
+        </details>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a href="javascript:(function() {
   const r = /(.*?)(\d+)([/?#].*)?$/;
   if (!r.test(location.href)) {
     alert('URL not supported')
@@ -185,6 +207,31 @@
         "JIRA Issue Key + title copyer": Copies "ISSUEKEY Title" from a JIRA issue view. On success, a modal alert will
         show to inform you that the copy was successful. If notifications are allowed for the current domain,
         a notification will be shown instead.
+        <details>
+          <summary>show code</summary>
+          <pre></pre>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+            href="javascript:(function() {
+  const keyElement = document.querySelector(`[data-test-id='issue.views.issue-base.foundation.breadcrumbs.breadcrumb-current-issue-container'] a span`);
+  const titleElement = document.querySelector(`[data-test-id='issue.views.issue-base.foundation.summary.heading']`);
+
+  if (keyElement && titleElement) {
+    const project = /(\w+)-\d+/.exec(keyElement.textContent)[1];
+    const issue = `${keyElement.textContent} ${titleElement.textContent}`;
+    const filepath = `${project}/${issue.replace(/[\/\\:]/g, ' ').replace(/ +/g, ' ').trim()}`;
+    const data = `JIRA:${keyElement.textContent}\n\n`;
+    window.open(`obsidian://advanced-uri?vault=Notes&filepath=${escape(filepath)}&data=${escape(data)}`, '_self');
+  }
+  })()"
+        >Open Issue in Obsidian</a>
+      </td>
+      <td>
+        Opens an Obsidian  from a JIRA issue view.
         <details>
           <summary>show code</summary>
           <pre></pre>
