@@ -84,6 +84,27 @@
     <tr>
       <td>
         <a href="javascript:(function() {
+  if (location.hostname === 'linear.app') {
+    location.href = location.href.replace(/^https:/, 'linear:')
+  }
+  else {
+    alert('URL not supported')
+  }
+})()"
+        >Open in Linear</a>
+      </td>
+      <td>
+        "Open in Linear": for any URL on linear.app, opens the corresponding URL in the Linear desktop app.
+        <details>
+          <summary>show code</summary>
+          <pre></pre>
+        </details>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <a href="javascript:(function() {
   const repo = prompt('Navigate to GitHub repo');
   if (repo) {
     const slug = repo.indexOf('/') === -1 ? `leukeleu/${repo}` : repo;
@@ -232,6 +253,69 @@
       </td>
       <td>
         Opens an Obsidian  from a JIRA issue view.
+        <details>
+          <summary>show code</summary>
+          <pre></pre>
+        </details>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <a
+            href="javascript:(function() {
+var modal = document.createElement('div');
+modal.className = 'modal';
+modal.id = 'myModal';
+
+var modalContent = document.createElement('div');
+modalContent.className = 'modal-content';
+
+var closeSpan = document.createElement('span');
+closeSpan.className = 'close';
+closeSpan.innerHTML = '&times;';
+
+var modalText = document.createElement('p');
+modalText.textContent = 'This is a modal dialog. You can put any content here.';
+
+var openButton = document.createElement('button');
+openButton.id = 'openModal';
+openButton.textContent = 'Open Modal';
+
+modalContent.appendChild(closeSpan);
+modalContent.appendChild(modalText);
+modal.appendChild(modalContent);
+document.body.appendChild(openButton);
+document.body.appendChild(modal);
+
+var style = document.createElement('style');
+style.textContent = ' .modal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.5); } .modal-content { background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 500px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); } .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; cursor: pointer; } .close:hover { color: black; } ';
+document.head.appendChild(style);
+
+var modalElement = document.getElementById('myModal');
+
+var btn = document.getElementById('openModal');
+
+var span = document.getElementsByClassName('close')[0];
+
+btn.onclick = function() {
+    modalElement.style.display = 'block';
+}
+
+span.onclick = function() {
+    modalElement.style.display = 'none';
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modalElement) {
+        modalElement.style.display = 'none';
+    }
+}
+  })()"
+        >Modal test</a>
+      </td>
+      <td>
+        Modal test.
         <details>
           <summary>show code</summary>
           <pre></pre>
